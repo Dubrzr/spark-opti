@@ -1,0 +1,120 @@
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+  <script src="funs.js"></script>
+</head>
+<body>
+<h3>Cluster information</h3>  
+<table>
+    <tbody><tr>
+        <td class="uno"><label>Number of nodes</label></td>
+        <td class="dos"><input type="number" value="5" id="node_count" step="1"> <label>Node(s)</label></td>
+        <td class="tres">The total number of nodes available in the YARN cluster.</td>
+    </tr>
+    <tr>
+        <td class="uno"><label>Number of cores of a node</label></td>
+        <td class="dos"><input type="number" value="32" id="node_cores" step="1"> <label>Cores</label></td>
+        <td class="tres">The number of cores of a single node.</td>
+    </tr>
+    <tr>
+        <td class="uno"><label>Physical memory of a node</label></td>
+        <td class="dos"><input type="number" value="98174" id="node_pmem" step="1"> <label>MB</label></td>
+        <td class="tres">The total pmem of a single node.</td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h3>YARN parameters from /usr/hdp/current/hadoop-client/conf/yarn-site.xml:</h3>
+<table>
+    <tbody>
+    <tr>
+        <td class="uno"><label>yarn.nodemanager.resource.memory-mb</label></td>
+        <td class="dos"><input type="number" value="67584" id="yarn_nm_resrc_mem_mb" step="1"> <label>MB</label></td>
+        <td class="tres">The maximum pmem allocated for all containers of <b>a single node</b>. (Must be &lt; node physicial memory).</td>
+    </tr>
+    <tr>
+        <td class="uno"><label>yarn.scheduler.minimum-allocation-mb</label></td>
+        <td class="dos"><input type="number" value="3072" step="1" id="yarn_sched_min_alloc_mb"> <label>MB</label></td>
+        <td class="tres">The minimum pmem allocated for a container.</td>
+    </tr>
+    <tr>
+        <td class="uno"><label>yarn.scheduler.maximum-allocation-mb</label></td>
+        <td class="dos"><input type="number" value="67584" id="yarn_sched_max_alloc_mb" step="1"> <label>MB</label></td>
+        <td class="tres">The maximum pmem allocated for a container. (Must be &lt;= yarn.nodemanager.resource.memory-mb)</td>
+    </tr>
+    <tr>
+        <td class="uno"><label>yarn.nodemanager.vmem-pmem-ratio</label></td>
+        <td class="dos"><input type="number" value="2.1" step="0.01" id="yarn_nm_vpmem_ratio"> <label>vmem/pmem</label></td>
+        <td class="tres">Ratio between virtual memory to physical memory when setting memory limits for containers. Container allocations are expressed in terms of physical memory, and virtual memory usage is allowed to exceed this allocation by this ratio.</td>
+    </tr>
+    <tr>
+        <td class="uno"><label>yarn.nodemanager.resource.cpu-vcores</label></td>
+        <td class="dos"><input type="number" value="16" step="1" id="yarn_nm_resrc_cpu_vcores"> <label>Cores</label></td>
+        <td class="tres">The maximum number of CPU cores that can be allocated for a container. (Containers can share CPU cores).</td>
+    </tr>
+</tbody></table>
+
+<h5>Summary:</h5>
+<ul>
+  <!-- <li>A YARN cluster of <e id="val01"></e> nodes for a total of <e id="val02"></e> cores and <e id="val03"></e>MB physical memory.</li> -->
+  <li>In the cluster, you will be able to allocate a total of:
+    <ul>
+      <li><e id="val02"></e> cores.</li>
+      <li><e id="val04"></e>MB of physical memory.</li>
+    </ul>
+  </li>
+  <li>In a container, you will be able to allocate:
+    <ul>
+      <li>a maximum of <e id="val05"></e>MB of virtual memory.</li>
+    </ul>
+  </li>
+  <li><e id="val10"></e></li>
+</ul>
+
+<br>
+<h3>Your requirements:</h3>
+<table>
+    <tbody>
+    <tr>
+        <td class="uno"><label>spark.yarn.executor.memoryOverhead</label></td>
+        <td class="dos"><input type="number" value="3072" id='spark_yarn_exec_memOverhead' step="1"> <label>MB</label></td>
+        <td class="tres">The amount of off-heap memory (in megabytes) to be allocated per executor. This is memory that accounts for things like VM overheads, interned strings, other native overheads, etc. This tends to grow with the executor size (typically 6-10%).</td>
+    </tr>
+    <tr>
+        <td class="uno"><label>pmem</label></td>
+        <td class="dos"><input type="number" value="2048" id='wanted_pmem' step="1"> <label>MB</label></td>
+        <td class="tres">The maximum physical memory allocated to a single process in the container.</td>
+    </tr>
+    <tr>
+        <td class="uno"><label>vmem</label></td>
+        <td class="dos"><input type="number" id="wanted_vmem" step="1" disabled> <label>MB</label></td>
+        <td class="tres">The maximum virtual memory allocated to a single process in the container.</td>
+    </tr>
+</tbody></table>
+
+<h5>Recommandations:</h5>
+<ul>
+  <li><e id="val06"></e></li>
+  <li>You should set num-executors, spark.executor.cores and executor.memory to the values of one of the green cells of the following table:</li>
+</ul>
+
+<table id="recom"></table>
+<table>
+  <tr>
+    <td>Cores/PMEM</td>
+    <td class="green-bg">Cores and PMEM valid</td>
+    <td class="orange-bg">Too many cores</td>
+    <td class="red-bg">Too much PMEM</td>
+  </tr>
+</table>
+  
+<h3>Sources</h3>
+<ul>
+  <li><a target="_blank" href="https://www.cloudera.com/documentation/enterprise/5-3-x/topics/cdh_ig_yarn_tuning.html">https://www.cloudera.com/documentation/enterprise/5-3-x/topics/cdh_ig_yarn_tuning.html</a></li>
+  <li><a target="_blank" href="https://hadoop.apache.org/docs/r2.4.1/hadoop-yarn/hadoop-yarn-common/yarn-default.xml">https://hadoop.apache.org/docs/r2.4.1/hadoop-yarn/hadoop-yarn-common/yarn-default.xml</a></li>
+  <li><a target="_blank" href="https://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-2/">https://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-2/</a></li>
+  
+  <li><a target="_blank" href="https://stackoverflow.com/questions/43826703/difference-between-yarn-scheduler-maximum-allocation-mb-and-yarn-nodemanager">https://stackoverflow.com/questions/43826703/difference-between-yarn-scheduler-maximum-allocation-mb-and-yarn-nodemanager</a></li>
+</ul>
+</body>
+</html>

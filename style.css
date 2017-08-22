@@ -1,0 +1,117 @@
+.uno {
+  width: 30%;
+}
+.dos {
+  width: 20%;
+}
+.tres {
+  width: 50%;
+}
+
+td {
+  background-color: #ededed;
+  padding: 5px;
+}
+
+e {
+  font-weight: bold;
+}
+
+input {
+  width: 70px;
+}
+
+.flashit{
+  background-color:#ff0000;
+	-webkit-animation: flash linear 0.5s infinite;
+	animation: flash linear 0.5s infinite;
+  color: #fff;
+}
+@-webkit-keyframes flash {
+	0% { opacity: 1; } 
+	50% { opacity: .1; } 
+	100% { opacity: 1; }
+}
+@keyframes flash {
+	0% { opacity: 1; } 
+	50% { opacity: .1; } 
+	100% { opacity: 1; }
+}
+
+.orange {
+  color: #ff8c00;
+}
+
+.green-bg {
+  background-color: #32cd32;
+  color: #fff;
+}
+.orange-bg {
+  background-color:  #ff8c00;
+  color: #fff;
+}
+.red-bg {
+  background-color: #cc0000;
+  color: #fff;
+}
+
+.verticalText {
+}.uno {
+  width: 30%;
+}
+.dos {
+  width: 20%;
+}
+.tres {
+  width: 50%;
+}
+
+td {
+  background-color: #ededed;
+  padding: 5px;
+}
+
+e {
+  font-weight: bold;
+}
+
+input {
+  width: 70px;
+}
+
+.flashit{
+  background-color:#ff0000;
+	-webkit-animation: flash linear 0.5s infinite;
+	animation: flash linear 0.5s infinite;
+  color: #fff;
+}
+@-webkit-keyframes flash {
+	0% { opacity: 1; } 
+	50% { opacity: .1; } 
+	100% { opacity: 1; }
+}
+@keyframes flash {
+	0% { opacity: 1; } 
+	50% { opacity: .1; } 
+	100% { opacity: 1; }
+}
+
+.orange {
+  color: #ff8c00;
+}
+
+.green-bg {
+  background-color: #32cd32;
+  color: #fff;
+}
+.orange-bg {
+  background-color:  #ff8c00;
+  color: #fff;
+}
+.red-bg {
+  background-color: #cc0000;
+  color: #fff;
+}
+
+.verticalText {
+}
